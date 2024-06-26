@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Le_Paraître_officiel.css">
+    <title>Le Paraître</title>
+</head>
+<body>
+    
+    <header class="flouttage">
+        <div class="carousel">
+            <img src="1-removebg-preview.png" class="active" alt="Image 1">
+            <img src="2-removebg-preview.png" alt="Image 2">
+            <img src="3-removebg-preview.png" alt="Image 3">
+            <div class="carousel-indicators">
+                <span class="active" data-index="0"></span>
+                <span data-index="1"></span>
+                <span data-index="2"></span>
+            </div>
+        </div>
+        <nav>
+            <a href="#about">À propos</a>
+            <a href="#menu">Menu</a>
+            <a href="#promotions">Promotions</a>
+            <a href="#commentaire">Commentaires</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section id="about" class="section">
+        <h2>À propos de nous</h2>
+        <p>Situé au cœur de Casablanca, <span style="color:rgb(255, 220, 128);">Le Paraître</span> vous invite à découvrir une expérience culinaire authentique aux saveurs africaines. En tant que restaurant en ligne, nous vous proposons un voyage gustatif unique, directement depuis le confort de votre foyer. Nos spécialités africaines soigneusement préparées sont le reflet de notre engagement envers la qualité et la tradition culinaire.
+
+        Chez <span style="color:rgb(255, 220, 128);">Le Paraître</span>, nous comprenons l'importance de la flexibilité et du service sur mesure. C'est pourquoi nous vous offrons la possibilité de commander vos plats préférés à la veille ou le jour même, pour une livraison à l'heure qui vous convient. Notre équipe dévouée travaille du lundi au samedi pour vous offrir une expérience culinaire inoubliable, que vous soyez seul, en famille ou entre amis.
+        
+        Découvrez dès aujourd'hui notre menu varié, mettant en vedette des plats africains authentiques, préparés avec passion et savoir-faire. Que vous soyez un amateur de cuisine africaine chevronné ou que vous souhaitiez simplement explorer de nouvelles saveurs, <span style="color:rgb(255, 220, 128);">Le Paraître</span> est là pour vous accompagner dans cette aventure culinaire.
+        
+        Plongez dans un univers de goûts et de textures uniques, où chaque plat raconte une histoire et éveille vos sens. Faites confiance à <span style="color:rgb(255, 220, 128);">Le Paraître</span> pour vous offrir une expérience gastronomique inoubliable, où l'authenticité et la convivialité sont au rendez-vous à chaque bouchée.</p>
+    </section>
+
+    <section id="menu" class="sectionm">
+        <h2>Notre Menu</h2>
+        <div class="gallery">
+            <div class="gallery-item" onclick="openModal('menu1')" style="height: 150px;width: 150px;">
+                <img src="b.png" alt="Menu 1">
+            </div>
+            <div class="gallery-item" onclick="openModal('menu2')"style="height: 150px;width: 150px;">
+                <img src="image.png" alt="Menu 2">
+            </div>
+            <div class="gallery-item" onclick="openModal('menu3')"style="height: 150px;width: 150px;">
+                <img src="tchep.png" alt="Menu 3">
+            </div>
+            <div class="gallery-item" onclick="openModal('menu7')"style="height: 150px;width: 150px;">
+                <img src="pizza.png" alt="Menu 7">
+            </div>
+            <div class="gallery-item" onclick="openModal('menu5')"style="height: 150px;width: 150px;">
+                <img src="gateau.png" alt="Menu 5">
+            </div>
+            <div class="gallery-item" onclick="openModal('menu6')"style="height: 150px;width: 150px;">
+                <img src="marbé.png" alt="Menu 6">
+            </div>
+        
+        </div>
+      
+    
+        <!-- Modal Structure -->
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <div id="modal-body"></div>
+            </div>
+        </div>
+
+    </section>
+    <section  class="section" id="contact">
+    <ul>
+        <a href="https://wa.me/c/212780064702"><li>Whatsapp</li></a> 
+        <a href=""><li>Instagram</li></a>
+        <a href=""><li>facebook</li></a> 
+    </ul>
+    </section>
+
+
+    <footer>
+        <div class="comments-section" id="commentaire">
+            <h2>Commentaires</h2>
+            <form id="comment-form">
+                <input type="text" id="name-input" placeholder="Votre nom" required>
+                <input type="text" id="comment-input" placeholder="Ajouter un commentaire" required>
+                <button type="submit">Ajouter</button>
+            </form>
+            <div id="comments-container" class="comments-container">
+                <!-- Les commentaires seront affichés ici -->
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const header = document.querySelector('header');
+    // Ajouter la classe 'visible' après un léger délai pour déclencher l'animation
+    setTimeout(() => {
+        header.classList.add('visible');
+    }, 100); // 100ms de délai pour assurer que l'animation est visible
+});
+
+
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.carousel img');
+        const indicators = document.querySelectorAll('.carousel-indicators span');
+    
+        function showImage(index) {
+            images.forEach((img, i) => {
+                img.classList.toggle('active', i === index);
+                indicators[i].classList.toggle('active', i === index);
+            });
+        }
+    
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage(currentIndex);
+        }
+    
+        indicators.forEach(indicator => {
+            indicator.addEventListener('click', () => {
+                currentIndex = Number(indicator.getAttribute('data-index'));
+                showImage(currentIndex);
+            });
+        });
+    
+        setInterval(nextImage, 3000); // Change image every 3 seconds
+
+        function openModal(menuId) {
+            const modal = document.getElementById('modal');
+            const modalBody = document.getElementById('modal-body');
+            
+            // Placeholder for menu details
+            const menuDetails = {
+                menu1: '<h2>Menu 1</h2><p>Description du Menu 1</p><br><p>Riz et Viande de boeuf à 78dh </p><br><b><p>Suppléments:</p></b><br><p>+Riz</p><p>+Patates</p><button class="like-button" onclick="likeMenu(event)">❤️ <span class="like-count"></span></button>',
+                menu2: '<h2>Menu 2</h2><p>Description du Menu 2...</p><p>Riz et Viande de boeuf à 78dh </p><br><b><p>Suppléments:</p></b><br><p>+Riz</p><p>+Patates</p><button class="like-button" onclick="likeMenu(event)">❤️ <span class="like-count">0</span></button>',
+                menu3: '<h2>Menu 3</h2><p>Description du Menu 3...</p><p>Riz et Viande de boeuf à 78dh </p><br><b><p>Suppléments:</p></b><br><p>+Riz</p><p>+Patates</p><button class="like-button" onclick="likeMenu(event)">❤️ <span class="like-count">0</span></button>',
+                menu4: '<h2>Menu 4</h2><p>Description du Menu 4...</p><p>Riz et Viande de boeuf à 78dh </p><br><b><p>Suppléments:</p></b><br><p>+Riz</p><p>+Patates</p><button class="like-button" onclick="likeMenu(event)">❤️ <span class="like-count">0</span></button>',
+                menu5: '<h2>Menu 5</h2><p>Description du Menu 5...</p><p>Riz et Viande de boeuf à 78dh </p><br><b><p>Suppléments:</p></b><br><p>+Riz</p><p>+Patates</p><button class="like-button" onclick="likeMenu(event)">❤️ <span class="like-count">0</span></button>',
+                menu6: '<h2>Menu 6</h2><p>Description du Menu 6...</p><p>Riz et Viande de boeuf à 78dh </p><br><b><p>Suppléments:</p></b><br><p>+Riz</p><p>+Patates</p><button class="like-button" onclick="likeMenu(event)">❤️ <span class="like-count">0</span></button>',
+                menu7: '<h2>Menu 7</h2><p>Description du Menu 7...</p><p>Riz et Viande de boeuf à 78dh </p><br><b><p>Suppléments:</p></b><br><p>+Riz</p><p>+Patates</p><button class="like-button" onclick="likeMenu(event)">❤️ <span class="like-count">0</span></button>',
+                menu8: '<h2>Menu 8</h2><p>Description du Menu 8...</p><p>Riz et Viande de boeuf à 78dh </p><br><b><p>Suppléments:</p></b><br><p>+Riz</p><p>+Patates</p><button class="like-button" onclick="likeMenu(event)">❤️ <span class="like-count">0</span></button>',
+            };
+
+            modalBody.innerHTML = menuDetails[menuId];
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+// Fonction pour gérer le clic sur le bouton J'aime
+function likeMenu(event, menuId) {
+    event.stopPropagation();
+    var likeButton = event.target;
+    likeButton.classList.toggle('liked');
+
+    // Récupération du nombre de likes actuel depuis le stockage local
+    var likes = parseInt(localStorage.getItem(menuId)) || 0;
+
+    // Si le bouton est aimé, on incrémente le nombre de likes
+    if (likeButton.classList.contains('liked')) {
+        likes++;
+    } else { // Sinon, on décrémente
+        likes--;
+    }
+
+    // Mise à jour du nombre de likes dans le stockage local
+    localStorage.setItem(menuId, likes);
+
+    // Affichage du nombre de likes
+    var likeCount = likeButton.querySelector('.like-count');
+    likeCount.textContent = likes; // Met à jour le nombre de likes affiché
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Récupérer les commentaires existants depuis le stockage local
+    let comments = JSON.parse(localStorage.getItem('comments')) || [];
+
+    // Afficher les commentaires existants
+    displayComments();
+
+    // Écouter l'événement de soumission du formulaire de commentaire
+    document.getElementById('comment-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        const nameInput = document.getElementById('name-input');
+        const commentInput = document.getElementById('comment-input');
+        const nameText = nameInput.value.trim();
+        const commentText = commentInput.value.trim();
+        if (nameText !== '' && commentText !== '') {
+            // Ajouter le commentaire à la liste
+            comments.unshift({ name: nameText, comment: commentText });
+            // Limiter les commentaires à 4
+            if (comments.length > 4) {
+                comments.pop(); // Retirer le dernier commentaire s'il y en a plus de 4
+            }
+            // Mettre à jour les commentaires dans le stockage local
+            localStorage.setItem('comments', JSON.stringify(comments));
+            // Afficher à nouveau les commentaires
+            displayComments();
+            // Effacer les champs de saisie
+            nameInput.value = '';
+            commentInput.value = '';
+        }
+    });
+
+    // Fonction pour afficher les commentaires
+    function displayComments() {
+        const commentsContainer = document.getElementById('comments-container');
+        commentsContainer.innerHTML = ''; // Effacer les commentaires existants
+        // Ajouter chaque commentaire à la liste
+        comments.forEach(function (comment) {
+            const commentElement = document.createElement('div');
+            commentElement.classList.add('comment');
+            commentElement.innerHTML = `
+                <img src="user.jpg" alt="User Icon" class="user-icon" style="height: 15px;width: 15px;">
+                <strong>${comment.name}:</strong>${comment.comment}
+            `;
+            commentsContainer.appendChild(commentElement);
+        });
+    }
+});
+    </script>
+    
+</body>
+
+</html>
